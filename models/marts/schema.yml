@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: mart_population_kpis
+    columns:
+      - name: a3Code
+        tests:
+          - not_null
+      - name: countryName
+        tests:
+          - not_null
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - a3Code
+            - countryName

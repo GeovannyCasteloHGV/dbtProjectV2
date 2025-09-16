@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: dbt_project_v2
+    tables:
+      - name: raw_populations
+        description: "Raw population by country and year."
+        
