@@ -17,12 +17,29 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.11.8'
+        python-version: '3.8'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install dbt-mysql  # or your adapter like dbt-postgres, dbt-snowflake
+    
+    - name: Create .dbt directory and profiles.yml
+      run: |
+        mkdir -p ~/.dbt
+        echo "
+        dbtProjectV2:
+          target: dev
+          outputs:
+            dev:
+              type: mysql
+              server: localhost
+              port: 3306
+              user: root
+              password: P@ssw0rd
+              schema: dbt_project_v2
+              database: dbt_project_v2
+          "> ~/.dbt/profiles.yml"
     - name: Run dbt commands
       run: |
         dbt deps
