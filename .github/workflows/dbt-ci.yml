@@ -39,7 +39,7 @@ jobs:
               password: P@ssw0rd
               schema: dbt_project_v2
               database: dbt_project_v2
-          "> ~/.dbt/profiles.yml"
+          "> ~/.dbt/profiles.yml
     - name: Run dbt commands
       run: |
         dbt deps
